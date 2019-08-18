@@ -1,0 +1,63 @@
+﻿@model IEnumerable<FactoryDataClient.Models.Plc>
+@{
+    /**/
+
+    ViewBag.Title = "UserIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Controllers</h2>
+
+
+<hr />
+
+<table id="plcs" class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>IP Address</th>
+            <th>Subscription PollRate</th>
+            <th>Event PollRate</th>
+            <th>Transaction PollRate</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+
+            var table = $("#plcs").DataTable({
+                ajax: {
+                    url: "api/plcs",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name",
+                        render: function (data, type, plc) {
+                            return "<a href='/plcs/details/" + plc.id + "'>" + plc.name + "</a>";
+                        }
+
+                    },
+                    {
+                        data: "ipAddress"
+                    },
+                    {
+                        data: "subscriptionPollRate"
+                    },
+                    {
+                        data: "eventPollRate"
+                    },
+                    {
+                        data: "transactionPollRate"
+                    }
+                ]
+            });
+
+        });
+    </script>
+
+}

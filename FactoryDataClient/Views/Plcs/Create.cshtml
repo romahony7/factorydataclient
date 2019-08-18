@@ -1,0 +1,114 @@
+﻿@model FactoryDataClient.ViewModels.PlcFormViewModel
+@{
+           
+
+   ViewBag.Title = "Create";
+   Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add Controller</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+ 
+  
+    <div class="form-horizontal">
+        <p class="alert alert-info">All fields are <strong>required</strong>.</p>
+        <hr />
+ 
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "eg. Logix Controller" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IPAddress, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IPAddress, new { htmlAttributes = new { @class = "form-control", placeholder = "eg. 192.168.100.100" } })
+                @Html.ValidationMessageFor(model => model.IPAddress, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        .
+        <div class="form-group">
+            @Html.LabelFor(model => model.DisableSubscriptions, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.DisableSubscriptions)
+                    @Html.ValidationMessageFor(model => model.DisableSubscriptions, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PollRateOverride, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PollRateOverride, new { htmlAttributes = new { @class = "form-control", placeholder = "eg. 2000" } })
+                @Html.ValidationMessageFor(model => model.PollRateOverride, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProcessorSlot, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProcessorSlot, new { htmlAttributes = new { @class = "form-control", placeholder = "eg. 0" } })
+                @Html.ValidationMessageFor(model => model.ProcessorSlot, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Port, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Port, new { htmlAttributes = new { @class = "form-control", placeholder = "eg. 12345" } })
+                @Html.ValidationMessageFor(model => model.Port, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EventPollRate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EventPollRate, new { htmlAttributes = new { @class = "form-control", placeholder = "eg. 2000" } })
+                @Html.ValidationMessageFor(model => model.EventPollRate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SubscriptionPollRate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SubscriptionPollRate, new { htmlAttributes = new { @class = "form-control", placeholder = "eg. 2000" } })
+                @Html.ValidationMessageFor(model => model.SubscriptionPollRate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TransactionPollRate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TransactionPollRate, new { htmlAttributes = new { @class = "form-control", placeholder = "eg. 2000" } })
+                @Html.ValidationMessageFor(model => model.TransactionPollRate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section scripts
+{
+
+    @Scripts.Render("~/bundles/jqueryval");
+}
+
+

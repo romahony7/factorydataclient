@@ -1,0 +1,91 @@
+﻿@model FactoryDataClient.ViewModels.PlcDetailViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Controller Details</h2>
+
+<div>
+    <h4>@Html.DisplayFor(model => model.Name)</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IPAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IPAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DisableSubscriptions)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DisableSubscriptions)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PollRateOverride)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PollRateOverride)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProcessorSlot)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProcessorSlot)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Port)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Port)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EventPollRate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EventPollRate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SubscriptionPollRate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubscriptionPollRate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TransactionPollRate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TransactionPollRate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+  
+    @Html.ActionLink("Back to List", "Index")
+</p>

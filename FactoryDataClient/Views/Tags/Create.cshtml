@@ -1,0 +1,75 @@
+﻿@model FactoryDataClient.ViewModels.TagFormViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add Tag</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Tag.Id)
+    @Html.ValidationSummary(true, "Please fix the following errors");
+
+    <div id="create" class="form-horizontal">
+        <p class="alert alert-info">All fields are <strong>required</strong>.</p>
+        <hr />
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Tag.PlcId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Tag.PlcId, new SelectList(Model.Plcs, "Id", "Name"), " ", new { @class = "form-control", @id = "plcid" })
+                @Html.ValidationMessageFor(model => model.Tag.PlcId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Tag.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Tag.Name, new { htmlAttributes = new { @class = "form-control", @id = "name" } })
+                @Html.ValidationMessageFor(model => model.Tag.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Tag.TagTypeId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Tag.TagTypeId, new SelectList(Model.TagTypes, "Id", "Name"), " ", new { @class = "form-control", @id = "typeid" })
+                @Html.ValidationMessageFor(model => model.Tag.TagTypeId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Tag.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.Tag.IsActive, new { htmlAttributes = new { @id = "isactive" } })
+                    @Html.ValidationMessageFor(model => model.Tag.IsActive, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section scripts
+{
+
+    @Scripts.Render("~/bundles/jqueryval");
+}
+

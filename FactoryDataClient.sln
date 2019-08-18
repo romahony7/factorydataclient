@@ -1,0 +1,82 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.645
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactoryDataClient", "FactoryDataClient\FactoryDataClient.csproj", "{E0AE0EBE-1D31-42DD-BD4F-7FD4C1EC29AD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApp", "WebApp", "{2AF7FCF9-1425-4958-8614-DF0ACDA39429}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactoryDataSqlSvc", "FactoryDataSqlSvc\FactoryDataSqlSvc.csproj", "{BC429976-1633-4376-833D-4E0FFF0F36DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FactoryDataPlcSvc", "FactoryDataPlcSvc\FactoryDataPlcSvc.csproj", "{4003D2CB-DEB7-4EF9-8396-AC13B5ABAD90}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{CA419A54-A5F0-43A5-B279-7011E95183A5}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "FactoryDataPlcSvc_MSI", "FactoryDataPlcSvc_MSI\FactoryDataPlcSvc_MSI.vdproj", "{F3320750-9BB7-4294-B1B5-5C01B21CE068}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "FactoryDataSqlSvc_MSI", "FactoryDataSqlSvc_MSI\FactoryDataSqlSvc_MSI.vdproj", "{82CFFC51-145E-416B-8EEA-3B268E32797E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{86C18A9B-5937-4BDD-A562-0208BB915C87}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LogixDriverDLL", "LogixDriverDLL", "{408DB9BD-717F-460A-97EB-45F4E712D6A5}"
+	ProjectSection(SolutionItems) = preProject
+		..\ClxDriverV124R982\CSharpDemo\DriverDLL\ClxDriver.dll = ..\ClxDriverV124R982\CSharpDemo\DriverDLL\ClxDriver.dll
+		..\ClxDriverV124R982\DriverUserManualv110.pdf = ..\ClxDriverV124R982\DriverUserManualv110.pdf
+		..\ClxDriverV124R982\ReleaseNotes.txt = ..\ClxDriverV124R982\ReleaseNotes.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{46AC6613-5869-4EE7-B9ED-D8AB40FCE327}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FactoryDataClient", "FactoryDataClient", "{013DE507-907F-4D00-AC46-A7EA39188400}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E0AE0EBE-1D31-42DD-BD4F-7FD4C1EC29AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0AE0EBE-1D31-42DD-BD4F-7FD4C1EC29AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0AE0EBE-1D31-42DD-BD4F-7FD4C1EC29AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0AE0EBE-1D31-42DD-BD4F-7FD4C1EC29AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC429976-1633-4376-833D-4E0FFF0F36DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC429976-1633-4376-833D-4E0FFF0F36DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC429976-1633-4376-833D-4E0FFF0F36DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC429976-1633-4376-833D-4E0FFF0F36DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4003D2CB-DEB7-4EF9-8396-AC13B5ABAD90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4003D2CB-DEB7-4EF9-8396-AC13B5ABAD90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4003D2CB-DEB7-4EF9-8396-AC13B5ABAD90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4003D2CB-DEB7-4EF9-8396-AC13B5ABAD90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3320750-9BB7-4294-B1B5-5C01B21CE068}.Debug|Any CPU.ActiveCfg = Debug
+		{F3320750-9BB7-4294-B1B5-5C01B21CE068}.Release|Any CPU.ActiveCfg = Release
+		{82CFFC51-145E-416B-8EEA-3B268E32797E}.Debug|Any CPU.ActiveCfg = Debug
+		{82CFFC51-145E-416B-8EEA-3B268E32797E}.Release|Any CPU.ActiveCfg = Release
+		{86C18A9B-5937-4BDD-A562-0208BB915C87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86C18A9B-5937-4BDD-A562-0208BB915C87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86C18A9B-5937-4BDD-A562-0208BB915C87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86C18A9B-5937-4BDD-A562-0208BB915C87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46AC6613-5869-4EE7-B9ED-D8AB40FCE327}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46AC6613-5869-4EE7-B9ED-D8AB40FCE327}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46AC6613-5869-4EE7-B9ED-D8AB40FCE327}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46AC6613-5869-4EE7-B9ED-D8AB40FCE327}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E0AE0EBE-1D31-42DD-BD4F-7FD4C1EC29AD} = {2AF7FCF9-1425-4958-8614-DF0ACDA39429}
+		{2AF7FCF9-1425-4958-8614-DF0ACDA39429} = {013DE507-907F-4D00-AC46-A7EA39188400}
+		{BC429976-1633-4376-833D-4E0FFF0F36DC} = {CA419A54-A5F0-43A5-B279-7011E95183A5}
+		{4003D2CB-DEB7-4EF9-8396-AC13B5ABAD90} = {CA419A54-A5F0-43A5-B279-7011E95183A5}
+		{CA419A54-A5F0-43A5-B279-7011E95183A5} = {013DE507-907F-4D00-AC46-A7EA39188400}
+		{F3320750-9BB7-4294-B1B5-5C01B21CE068} = {CA419A54-A5F0-43A5-B279-7011E95183A5}
+		{82CFFC51-145E-416B-8EEA-3B268E32797E} = {CA419A54-A5F0-43A5-B279-7011E95183A5}
+		{86C18A9B-5937-4BDD-A562-0208BB915C87} = {013DE507-907F-4D00-AC46-A7EA39188400}
+		{408DB9BD-717F-460A-97EB-45F4E712D6A5} = {013DE507-907F-4D00-AC46-A7EA39188400}
+		{46AC6613-5869-4EE7-B9ED-D8AB40FCE327} = {013DE507-907F-4D00-AC46-A7EA39188400}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4D787CF7-BE0B-410F-848B-54311499EBCC}
+	EndGlobalSection
+EndGlobal

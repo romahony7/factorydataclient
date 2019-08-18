@@ -1,0 +1,369 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FactoryDataClientModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="EventTagRecords">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TagId" Type="int" Nullable="false" />
+          <Property Name="Data" Type="bigint" Nullable="false" />
+          <Property Name="PlcTS" Type="datetime" Nullable="false" />
+          <Property Name="RecordTS" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Plcs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IPAddress" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DisableSubscriptions" Type="bit" Nullable="false" />
+          <Property Name="PollRateOverride" Type="int" Nullable="false" />
+          <Property Name="ProcessorSlot" Type="int" Nullable="false" />
+          <Property Name="Port" Type="int" Nullable="false" />
+          <Property Name="EventPollRate" Type="int" Nullable="false" />
+          <Property Name="SubscriptionPollRate" Type="int" Nullable="false" />
+          <Property Name="TransactionPollRate" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubscriptionTagRecords">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TagId" Type="int" Nullable="false" />
+          <Property Name="Data" Type="bigint" Nullable="false" />
+          <Property Name="PlcTS" Type="datetime" Nullable="false" />
+          <Property Name="RecordTS" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tags">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="TagTypeId" Type="int" Nullable="false" />
+          <Property Name="PlcId" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TagTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_EventTagRecords_dbo_Tags_TagId">
+          <End Role="Tags" Type="Self.Tags" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EventTagRecords" Type="Self.EventTagRecords" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tags">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EventTagRecords">
+              <PropertyRef Name="TagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_SubscriptionTagRecords_dbo_Tags_TagId">
+          <End Role="Tags" Type="Self.Tags" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SubscriptionTagRecords" Type="Self.SubscriptionTagRecords" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tags">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubscriptionTagRecords">
+              <PropertyRef Name="TagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Tags_dbo_Plcs_PlcId">
+          <End Role="Plcs" Type="Self.Plcs" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Tags" Type="Self.Tags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plcs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tags">
+              <PropertyRef Name="PlcId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Tags_dbo_TagTypes_TagTypeId">
+          <End Role="TagTypes" Type="Self.TagTypes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Tags" Type="Self.Tags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TagTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tags">
+              <PropertyRef Name="TagTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FactoryDataClientModelStoreContainer">
+          <EntitySet Name="EventTagRecords" EntityType="Self.EventTagRecords" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Plcs" EntityType="Self.Plcs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubscriptionTagRecords" EntityType="Self.SubscriptionTagRecords" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tags" EntityType="Self.Tags" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TagTypes" EntityType="Self.TagTypes" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_EventTagRecords_dbo_Tags_TagId" Association="Self.FK_dbo_EventTagRecords_dbo_Tags_TagId">
+            <End Role="Tags" EntitySet="Tags" />
+            <End Role="EventTagRecords" EntitySet="EventTagRecords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_SubscriptionTagRecords_dbo_Tags_TagId" Association="Self.FK_dbo_SubscriptionTagRecords_dbo_Tags_TagId">
+            <End Role="Tags" EntitySet="Tags" />
+            <End Role="SubscriptionTagRecords" EntitySet="SubscriptionTagRecords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Tags_dbo_Plcs_PlcId" Association="Self.FK_dbo_Tags_dbo_Plcs_PlcId">
+            <End Role="Plcs" EntitySet="Plcs" />
+            <End Role="Tags" EntitySet="Tags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Tags_dbo_TagTypes_TagTypeId" Association="Self.FK_dbo_Tags_dbo_TagTypes_TagTypeId">
+            <End Role="TagTypes" EntitySet="TagTypes" />
+            <End Role="Tags" EntitySet="Tags" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FactoryDataClientModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="EventTagRecord">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TagId" Type="Int32" Nullable="false" />
+          <Property Name="Data" Type="Int64" Nullable="false" />
+          <Property Name="PlcTS" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RecordTS" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Tag" Relationship="Self.FK_dbo_EventTagRecords_dbo_Tags_TagId" FromRole="EventTagRecords" ToRole="Tags" />
+        </EntityType>
+        <EntityType Name="Plc">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IPAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DisableSubscriptions" Type="Boolean" Nullable="false" />
+          <Property Name="PollRateOverride" Type="Int32" Nullable="false" />
+          <Property Name="ProcessorSlot" Type="Int32" Nullable="false" />
+          <Property Name="Port" Type="Int32" Nullable="false" />
+          <Property Name="EventPollRate" Type="Int32" Nullable="false" />
+          <Property Name="SubscriptionPollRate" Type="Int32" Nullable="false" />
+          <Property Name="TransactionPollRate" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Tags" Relationship="Self.FK_dbo_Tags_dbo_Plcs_PlcId" FromRole="Plcs" ToRole="Tags" />
+        </EntityType>
+        <EntityType Name="SubscriptionTagRecord">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TagId" Type="Int32" Nullable="false" />
+          <Property Name="Data" Type="Int64" Nullable="false" />
+          <Property Name="PlcTS" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RecordTS" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Tag" Relationship="Self.FK_dbo_SubscriptionTagRecords_dbo_Tags_TagId" FromRole="SubscriptionTagRecords" ToRole="Tags" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TagTypeId" Type="Int32" Nullable="false" />
+          <Property Name="PlcId" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="EventTagRecords" Relationship="Self.FK_dbo_EventTagRecords_dbo_Tags_TagId" FromRole="Tags" ToRole="EventTagRecords" />
+          <NavigationProperty Name="Plc" Relationship="Self.FK_dbo_Tags_dbo_Plcs_PlcId" FromRole="Tags" ToRole="Plcs" />
+          <NavigationProperty Name="SubscriptionTagRecords" Relationship="Self.FK_dbo_SubscriptionTagRecords_dbo_Tags_TagId" FromRole="Tags" ToRole="SubscriptionTagRecords" />
+          <NavigationProperty Name="TagType" Relationship="Self.FK_dbo_Tags_dbo_TagTypes_TagTypeId" FromRole="Tags" ToRole="TagTypes" />
+        </EntityType>
+        <EntityType Name="TagType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Tags" Relationship="Self.FK_dbo_Tags_dbo_TagTypes_TagTypeId" FromRole="TagTypes" ToRole="Tags" />
+        </EntityType>
+        <Association Name="FK_dbo_EventTagRecords_dbo_Tags_TagId">
+          <End Role="Tags" Type="Self.Tag" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EventTagRecords" Type="Self.EventTagRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tags">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EventTagRecords">
+              <PropertyRef Name="TagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Tags_dbo_Plcs_PlcId">
+          <End Role="Plcs" Type="Self.Plc" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Tags" Type="Self.Tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plcs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tags">
+              <PropertyRef Name="PlcId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_SubscriptionTagRecords_dbo_Tags_TagId">
+          <End Role="Tags" Type="Self.Tag" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SubscriptionTagRecords" Type="Self.SubscriptionTagRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tags">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubscriptionTagRecords">
+              <PropertyRef Name="TagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Tags_dbo_TagTypes_TagTypeId">
+          <End Role="TagTypes" Type="Self.TagType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Tags" Type="Self.Tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TagTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tags">
+              <PropertyRef Name="TagTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FactoryDataDbContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="EventTagRecords" EntityType="Self.EventTagRecord" />
+          <EntitySet Name="Plcs" EntityType="Self.Plc" />
+          <EntitySet Name="SubscriptionTagRecords" EntityType="Self.SubscriptionTagRecord" />
+          <EntitySet Name="Tags" EntityType="Self.Tag" />
+          <EntitySet Name="TagTypes" EntityType="Self.TagType" />
+          <AssociationSet Name="FK_dbo_EventTagRecords_dbo_Tags_TagId" Association="Self.FK_dbo_EventTagRecords_dbo_Tags_TagId">
+            <End Role="Tags" EntitySet="Tags" />
+            <End Role="EventTagRecords" EntitySet="EventTagRecords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Tags_dbo_Plcs_PlcId" Association="Self.FK_dbo_Tags_dbo_Plcs_PlcId">
+            <End Role="Plcs" EntitySet="Plcs" />
+            <End Role="Tags" EntitySet="Tags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_SubscriptionTagRecords_dbo_Tags_TagId" Association="Self.FK_dbo_SubscriptionTagRecords_dbo_Tags_TagId">
+            <End Role="Tags" EntitySet="Tags" />
+            <End Role="SubscriptionTagRecords" EntitySet="SubscriptionTagRecords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Tags_dbo_TagTypes_TagTypeId" Association="Self.FK_dbo_Tags_dbo_TagTypes_TagTypeId">
+            <End Role="TagTypes" EntitySet="TagTypes" />
+            <End Role="Tags" EntitySet="Tags" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FactoryDataClientModelStoreContainer" CdmEntityContainer="FactoryDataDbContext">
+          <EntitySetMapping Name="EventTagRecords">
+            <EntityTypeMapping TypeName="FactoryDataClientModel.EventTagRecord">
+              <MappingFragment StoreEntitySet="EventTagRecords">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TagId" ColumnName="TagId" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="PlcTS" ColumnName="PlcTS" />
+                <ScalarProperty Name="RecordTS" ColumnName="RecordTS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Plcs">
+            <EntityTypeMapping TypeName="FactoryDataClientModel.Plc">
+              <MappingFragment StoreEntitySet="Plcs">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+                <ScalarProperty Name="DisableSubscriptions" ColumnName="DisableSubscriptions" />
+                <ScalarProperty Name="PollRateOverride" ColumnName="PollRateOverride" />
+                <ScalarProperty Name="ProcessorSlot" ColumnName="ProcessorSlot" />
+                <ScalarProperty Name="Port" ColumnName="Port" />
+                <ScalarProperty Name="EventPollRate" ColumnName="EventPollRate" />
+                <ScalarProperty Name="SubscriptionPollRate" ColumnName="SubscriptionPollRate" />
+                <ScalarProperty Name="TransactionPollRate" ColumnName="TransactionPollRate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubscriptionTagRecords">
+            <EntityTypeMapping TypeName="FactoryDataClientModel.SubscriptionTagRecord">
+              <MappingFragment StoreEntitySet="SubscriptionTagRecords">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TagId" ColumnName="TagId" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="PlcTS" ColumnName="PlcTS" />
+                <ScalarProperty Name="RecordTS" ColumnName="RecordTS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tags">
+            <EntityTypeMapping TypeName="FactoryDataClientModel.Tag">
+              <MappingFragment StoreEntitySet="Tags">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TagTypeId" ColumnName="TagTypeId" />
+                <ScalarProperty Name="PlcId" ColumnName="PlcId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TagTypes">
+            <EntityTypeMapping TypeName="FactoryDataClientModel.TagType">
+              <MappingFragment StoreEntitySet="TagTypes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
